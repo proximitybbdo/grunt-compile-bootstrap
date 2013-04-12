@@ -1,4 +1,4 @@
-# What
+# Grunt compile bootstrap
 
 This is a basic Gruntjs setup for
 

@@ -6,7 +6,7 @@ module.exports = (grunt) ->
       dist:
         options:
           config: 'config.rb'
-          sassDir: 'assets/sass'
+          sassDir: 'assets/css'
           cssDir: 'assets/css'
           imagesDir: 'assets/img'
           fontsDir: 'assets/fonts'
@@ -43,7 +43,7 @@ module.exports = (grunt) ->
         files: ['assets/coffee/**/*.coffee']
         tasks: ['coffee:app', 'jsmin-sourcemap']
       sass:
-        files: ['assets/sass/*.sass']
+        files: ['assets/css/*.sass']
         tasks: ['compass']
   })
 

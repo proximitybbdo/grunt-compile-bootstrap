@@ -11,17 +11,6 @@ module.exports = (grunt) ->
           imagesDir: 'assets/img'
           fontsDir: 'assets/fonts'
 
-    'jsmin-sourcemap':
-      all:
-        # Source files to concatenate and minify (also accepts a string and minimatch items)
-        src: ['assets/js/main.js']
-        # Destination for concatenated/minified JavaScript
-        dest: 'assets/js/main.min.js'
-        # Destination for sourcemap of minified JavaScript
-        destMap: 'assets/js/main.js.map'
-        # Optional root for all relative URLs
-        srcRoot: '../..'
-
     coffee:
       app:
         options:

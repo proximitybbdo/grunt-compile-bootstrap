@@ -6,7 +6,6 @@
     "grunt-contrib-coffee": "*",
     "grunt-contrib-compass": "*",
     "grunt-contrib-watch": "*",
-    "grunt-jsmin-sourcemap": "*",
     "grunt-contrib-jshint": "*"
   },
   "devDependencies": {

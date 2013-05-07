@@ -32,16 +32,18 @@ module.exports = (grunt) ->
           'assets/js/main.js': ['assets/coffee/**/*.coffee']
 
     jshint:
-      options:
-        boss: true
-        expr: true
-        eqnull: true
-        files: ['assets/js/main.js']
+      app:
+        options:
+          boss: true
+          expr: true
+          eqnull: true
+        files:
+          src: 'assets/js/site/base.js'
 
     watch:
       app:
         files: ['assets/coffee/**/*.coffee']
-        tasks: ['coffee:app', 'jsmin-sourcemap']
+        tasks: ['coffee', 'jsmin-sourcemap']
       sass:
         files: ['assets/css/*.sass']
         tasks: ['compass']
@@ -54,4 +56,4 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-jsmin-sourcemap'
 
   # Default task.
-  grunt.registerTask 'default', ['compass', 'coffee:app', 'jshint', 'jsmin-sourcemap']
+  grunt.registerTask 'default', ['compass', 'coffee', 'jshint', 'jsmin-sourcemap']

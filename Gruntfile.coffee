@@ -2,6 +2,7 @@ module.exports = (grunt) ->
 
   # Project configuration.
   grunt.initConfig({
+    vendorlibs:['assets/js/vendor/*.js', 'assets/js/base.js']
     compass:
       dist:
         options:
@@ -18,14 +19,28 @@ module.exports = (grunt) ->
           bare: false,
           join: true
         files:
-          'assets/js/main.js': ['assets/coffee/**/*.coffee']
+          'assets/js/base.js': ['assets/coffee/**/*.coffee']
 
     jshint:
       options:
         boss: true
         expr: true
         eqnull: true
-        files: ['assets/js/main.js']
+        files: ['assets/js/base.js']
+
+    concat:
+      options:
+        stripBanners: true
+      dist:
+        src: '<%= vendorlibs %>',
+        dest: 'assets/js/app.js'
+
+    uglify:
+      app:
+        options:
+          sourceMap: 'assets/js/app.js.map' # the sourcemap
+        files:
+          'assets/js/app.min.js': ['assets/js/app.js']
 
     watch:
       app:
@@ -43,4 +58,6 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-jsmin-sourcemap'
 
   # Default task.
-  grunt.registerTask 'default', ['compass', 'coffee:app', 'jshint', 'jsmin-sourcemap']
+  grunt.registerTask 'default', ['compass', 'coffee', 'jshint']
+  # deploy
+  grunt.registerTask 'deploy', ['compass', 'coffee', 'jshint', 'concat', 'uglify']

@@ -1,7 +1,7 @@
 module.exports = (grunt) ->
 
   # Project configuration.
-  grunt.initConfig({
+  grunt.initConfig
     compass:
       dist:
         options:
@@ -26,7 +26,7 @@ module.exports = (grunt) ->
       app:
         options:
           sourceMap: true
-          bare: false,
+          bare: false
           join: true
         files:
           'assets/js/main.js': ['assets/coffee/**/*.coffee']
@@ -45,7 +45,6 @@ module.exports = (grunt) ->
       sass:
         files: ['assets/css/*.sass']
         tasks: ['compass']
-  })
 
   grunt.loadNpmTasks 'grunt-contrib-coffee'
   grunt.loadNpmTasks 'grunt-contrib-compass'

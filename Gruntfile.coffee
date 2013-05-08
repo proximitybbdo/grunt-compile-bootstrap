@@ -3,6 +3,7 @@ module.exports = (grunt) ->
 
   # Project configuration.
   grunt.initConfig
+    vendorlibs:['assets/js/vendor/*.js', 'assets/js/base.js']
     compass:
       app:
         options:
@@ -18,17 +19,6 @@ module.exports = (grunt) ->
           outputStyle: 'compressed'
           raw: 'preferred_syntax = :sass\n'
 
-    'jsmin-sourcemap':
-      all:
-        # Source files to concatenate and minify (also accepts a string and minimatch items)
-        src: ['assets/js/main.js']
-        # Destination for concatenated/minified JavaScript
-        dest: 'assets/js/main.min.js'
-        # Destination for sourcemap of minified JavaScript
-        destMap: 'assets/js/main.js.map'
-        # Optional root for all relative URLs
-        srcRoot: '../..'
-
     coffee:
       app:
         options:
@@ -36,7 +26,7 @@ module.exports = (grunt) ->
           bare: false
           join: true
         files:
-          'assets/js/main.js': ['assets/coffee/**/*.coffee']
+          'assets/js/base.js': ['assets/coffee/**/*.coffee']
 
     jshint:
       app:
@@ -47,6 +37,20 @@ module.exports = (grunt) ->
         files:
           src: 'assets/js/site/base.js'
 
+    concat:
+      options:
+        stripBanners: true
+      dist:
+        src: '<%= vendorlibs %>',
+        dest: 'assets/js/app.js'
+
+    uglify:
+      app:
+        options:
+          sourceMap: 'assets/js/app.js.map' # the sourcemap
+        files:
+          'assets/js/app.min.js': ['assets/js/app.js']
+
     watch:
       app:
         files: ['assets/coffee/**/*.coffee']
@@ -56,4 +60,6 @@ module.exports = (grunt) ->
         tasks: ['compass']
 
   # Default task.
-  grunt.registerTask 'default', ['compass', 'coffee', 'jshint', 'jsmin-sourcemap']
+  grunt.registerTask 'default', ['compass', 'coffee', 'jshint']
+  # deploy
+  grunt.registerTask 'deploy', ['compass', 'coffee', 'jshint', 'concat', 'uglify']

@@ -3,13 +3,19 @@ module.exports = (grunt) ->
   # Project configuration.
   grunt.initConfig
     compass:
-      dist:
+      app:
         options:
-          config: 'config.rb'
+          require: [] #to use compass libs ex: 'compass-h5bp','ceaser-easing'
           sassDir: 'assets/css'
           cssDir: 'assets/css'
           imagesDir: 'assets/img'
-          fontsDir: 'assets/fonts'
+          fontsDir: 'assets/font'
+          httpPath: "/"
+          relativeAssets: true
+          boring: true
+          debugInfo: true
+          outputStyle: 'compressed'
+          raw: 'preferred_syntax = :sass\n'
 
     'jsmin-sourcemap':
       all:

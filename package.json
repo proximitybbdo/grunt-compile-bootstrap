@@ -7,15 +7,12 @@
     "grunt": "~0.4.1",
     "grunt-contrib-compass": "*",
     "grunt-contrib-coffee": "*",
-    "grunt-contrib-jshint": "*"
+    "grunt-contrib-jshint": "*",
     "grunt-contrib-concat": "*",
     "grunt-contrib-uglify": "*",
     "grunt-contrib-watch": "*",
     "matchdep": "*"
-  }
-  "engines": {
-    "node": ">=0.8.0"
-  }
+  },
   "engines": {
     "node": ">=0.8.0"
   }

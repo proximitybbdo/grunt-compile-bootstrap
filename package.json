@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "dependencies": {},
   "devDependencies": {
-    "grunt": "~0.4.1"
+    "grunt": "~0.4.1",
     "grunt-contrib-compass": "*",
     "grunt-contrib-coffee": "*",
     "grunt-contrib-jshint": "*"

@@ -1,4 +1,5 @@
 module.exports = (grunt) ->
+  require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
   # Project configuration.
   grunt.initConfig
@@ -47,12 +48,6 @@ module.exports = (grunt) ->
       sass:
         files: ['assets/css/*.sass']
         tasks: ['compass']
-
-  grunt.loadNpmTasks 'grunt-contrib-coffee'
-  grunt.loadNpmTasks 'grunt-contrib-compass'
-  grunt.loadNpmTasks 'grunt-contrib-watch'
-  grunt.loadNpmTasks 'grunt-contrib-jshint'
-  grunt.loadNpmTasks 'grunt-jsmin-sourcemap'
 
   # Default task.
   grunt.registerTask 'default', ['compass', 'coffee', 'jshint', 'jsmin-sourcemap']

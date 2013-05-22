@@ -47,6 +47,9 @@ module.exports = (grunt) ->
       sass:
         files: ['assets/css/**/*.sass']
         tasks: ['compass']
+      scss:
+        files: ['assets/css/**/*.scss']
+        tasks:['compass']
 
   grunt.loadNpmTasks 'grunt-contrib-coffee'
   grunt.loadNpmTasks 'grunt-contrib-compass'

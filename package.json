@@ -2,14 +2,17 @@
   "author": "Proximity BBDO",
   "name": "project-name",
   "version": "0.0.1",
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "~0.4.1",
     "grunt-contrib-coffee": "*",
     "grunt-contrib-compass": "*",
     "grunt-contrib-watch": "*",
     "grunt-jsmin-sourcemap": "*",
-    "grunt-contrib-jshint": "*"
+    "grunt-contrib-jshint": "*",
+    "matchdep": "*"
   },
-  "devDependencies": {
-    "grunt": "~0.4.1"
+  "engines": {
+    "node": ">=0.8.0"
   }
 }

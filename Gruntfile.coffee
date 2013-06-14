@@ -9,7 +9,7 @@ module.exports = (grunt) ->
           sassDir: 'assets/css'
           cssDir: 'assets/css'
           imagesDir: 'assets/img'
-          fontsDir: 'assets/font'
+          fontsDir: 'assets/fonts'
           httpPath: "/"
           relativeAssets: true
           boring: true

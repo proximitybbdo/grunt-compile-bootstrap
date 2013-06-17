@@ -7,7 +7,7 @@ module.exports = (grunt) ->
     compass:
       app:
         options:
-          require: [] #to use compass libs ex: 'compass-h5bp','ceaser-easing'
+          require: ['compass-h5bp'] #to use compass libs ex: ,'ceaser-easing'
           sassDir: 'assets/css'
           cssDir: 'assets/css'
           imagesDir: 'assets/img'
@@ -35,7 +35,7 @@ module.exports = (grunt) ->
           expr: true
           eqnull: true
         files:
-          src: 'assets/js/site/base.js'
+          src: 'assets/js/*.js'
 
     concat:
       options:

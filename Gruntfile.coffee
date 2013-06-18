@@ -54,7 +54,7 @@ module.exports = (grunt) ->
     watch:
       app:
         files: ['assets/coffee/**/*.coffee']
-        tasks: ['coffee', 'jsmin-sourcemap']
+        tasks: ['coffee']
       sass:
         files: ['assets/css/**/*.sass']
         tasks: ['compass']

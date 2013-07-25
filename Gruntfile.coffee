@@ -2,14 +2,23 @@ module.exports = (grunt) ->
 
   # Project configuration.
   grunt.initConfig({
+    pkg: grunt.file.readJSON('package.json')
+
     compass:
       dist:
         options:
-          config: 'config.rb'
           sassDir: 'assets/css'
           cssDir: 'assets/css'
           imagesDir: 'assets/img'
           fontsDir: 'assets/fonts'
+          httpPath: "/"
+          relativeAssets: true
+          boring: true
+          debugInfo: true
+          outputStyle: 'compressed'
+          # enable_sourcemaps: true
+          raw: '{:preferred_syntax => :sass, :sourcemap => true}\n'
+          require: []
 
     'jsmin-sourcemap':
       all:

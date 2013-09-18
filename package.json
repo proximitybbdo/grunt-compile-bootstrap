@@ -5,6 +5,7 @@
   "dependencies": {},
   "devDependencies": {
     "grunt": "~0.4.1",
+    "grunt-contrib-less": "*",
     "grunt-contrib-coffee": "*",
     "grunt-contrib-jshint": "*",
     "grunt-contrib-concat": "*",

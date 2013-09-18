@@ -61,6 +61,17 @@ module.exports = (grunt) ->
             dest: "assets/img/"
         ]
 
+    handlebars:
+      compile:
+        options:
+          namespace: 'Handlebars.templates'
+          amd: false
+          processName: (file_name) ->
+            file_name = file_name.replace 'assets/templates/', ''
+            file_name = file_name.replace '.handlebars', ''
+        files:
+          "assets/js/templates.js": "assets/templates/**/*.handlebars"
+
     watch:
       app:
         files: ['assets/coffee/**/*.coffee']
@@ -85,5 +96,6 @@ module.exports = (grunt) ->
     'coffee'
     'jshint'
     'imagemin'
+    'handlebars'
     'requirejs'
   ]

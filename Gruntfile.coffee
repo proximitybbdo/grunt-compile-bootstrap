@@ -3,7 +3,6 @@ module.exports = (grunt) ->
 
   # Project configuration.
   grunt.initConfig
-    vendorlibs:['assets/js/vendor/*.js', 'assets/js/base.js']
     compass:
       app:
         options:
@@ -51,20 +50,6 @@ module.exports = (grunt) ->
         files:
           src: 'assets/js/*.js'
 
-    concat:
-      options:
-        stripBanners: true
-      dist:
-        src: '<%= vendorlibs %>'
-        dest: 'assets/js/app.js'
-
-    uglify:
-      app:
-        options:
-          sourceMap: 'assets/js/app.js.map'
-        files:
-          'assets/js/app.min.js': ['assets/js/app.js']
-
     imagemin:
       dist:
         options:
@@ -99,7 +84,6 @@ module.exports = (grunt) ->
     'compass'
     'coffee'
     'jshint'
-    'concat'
-    'uglify'
     'imagemin'
+    'requirejs'
   ]

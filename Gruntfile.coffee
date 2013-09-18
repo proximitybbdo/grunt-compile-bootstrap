@@ -5,6 +5,26 @@ module.exports = (grunt) ->
   grunt.initConfig
     vendorlibs:['assets/js/vendor/*.js', 'assets/js/base.js']
 
+    less:
+      development:
+        options:
+          paths: ["assets/css"]
+        files:
+          "assets/css/style.css": [
+            "assets/css/lib/*.less"
+            "assets/css/style.less"
+          ]
+
+      production:
+        options:
+          paths: ["assets/css"],
+          yuicompress: true
+        files:
+          "assets/css/style.css": [
+            "assets/css/lib/*.less"
+            "assets/css/style.less"
+          ]
+
     coffee:
       app:
         options:
@@ -52,17 +72,20 @@ module.exports = (grunt) ->
       app:
         files: ['assets/coffee/**/*.coffee']
         tasks: ['coffee']
+      less:
+        files: ['assets/css/**/*.less']
+        tasks: ['less:development']
 
   # Default task.
   grunt.registerTask 'default', [
-
+    'less:development'
     'coffee'
     'jshint'
   ]
 
   # deploy
   grunt.registerTask 'deploy', [
-
+    'less:production'
     'coffee'
     'jshint'
     'concat'

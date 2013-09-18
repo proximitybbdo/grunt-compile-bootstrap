@@ -41,15 +41,26 @@ module.exports = (grunt) ->
       options:
         stripBanners: true
       dist:
-        src: '<%= vendorlibs %>',
+        src: '<%= vendorlibs %>'
         dest: 'assets/js/app.js'
 
     uglify:
       app:
         options:
-          sourceMap: 'assets/js/app.js.map' # the sourcemap
+          sourceMap: 'assets/js/app.js.map'
         files:
           'assets/js/app.min.js': ['assets/js/app.js']
+
+    imagemin:
+      dist:
+        options:
+          optimizationLevel: 3
+        files: [
+            expand: true,
+            cwd: "assets/img/"
+            src: "**/*.{png,jpg,jpeg}"
+            dest: "assets/img/"
+        ]
 
     watch:
       app:
@@ -63,6 +74,18 @@ module.exports = (grunt) ->
         tasks: ['compass']
 
   # Default task.
-  grunt.registerTask 'default', ['compass', 'coffee', 'jshint']
+  grunt.registerTask 'default', [
+    'compass'
+    'coffee'
+    'jshint'
+  ]
+
   # deploy
-  grunt.registerTask 'deploy', ['compass', 'coffee', 'jshint', 'concat', 'uglify']
+  grunt.registerTask 'deploy', [
+    'compass'
+    'coffee'
+    'jshint'
+    'concat'
+    'uglify'
+    'imagemin'
+  ]

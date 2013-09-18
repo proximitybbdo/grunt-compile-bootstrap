@@ -4,20 +4,6 @@ module.exports = (grunt) ->
   # Project configuration.
   grunt.initConfig
     vendorlibs:['assets/js/vendor/*.js', 'assets/js/base.js']
-    compass:
-      app:
-        options:
-          require: ['compass-h5bp'] #to use compass libs ex: ,'ceaser-easing'
-          sassDir: 'assets/css'
-          cssDir: 'assets/css'
-          imagesDir: 'assets/img'
-          fontsDir: 'assets/font'
-          httpPath: "/"
-          relativeAssets: true
-          boring: true
-          debugInfo: true
-          outputStyle: 'compressed'
-          raw: 'preferred_syntax = :sass\n'
 
     coffee:
       app:
@@ -66,23 +52,17 @@ module.exports = (grunt) ->
       app:
         files: ['assets/coffee/**/*.coffee']
         tasks: ['coffee']
-      sass:
-        files: ['assets/css/**/*.sass']
-        tasks: ['compass']
-      scss:
-        files: ['assets/css/**/*.scss']
-        tasks: ['compass']
 
   # Default task.
   grunt.registerTask 'default', [
-    'compass'
+
     'coffee'
     'jshint'
   ]
 
   # deploy
   grunt.registerTask 'deploy', [
-    'compass'
+
     'coffee'
     'jshint'
     'concat'

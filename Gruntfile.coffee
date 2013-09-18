@@ -31,6 +31,17 @@ module.exports = (grunt) ->
           ext: '.js'
         ]
 
+    requirejs:
+      compile:
+        options:
+          mainConfigFile: 'assets/js/build.js'
+          baseUrl: "assets/js"
+          name: "base"
+          include: ['templates', 'build']
+          insertRequire: ['templates']
+          out: 'assets/js/base.min.js'
+          preserveLicenseComments: false
+
     jshint:
       app:
         options:

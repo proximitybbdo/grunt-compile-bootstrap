@@ -54,8 +54,11 @@ module.exports = (grunt) ->
         files: ['assets/coffee/**/*.coffee']
         tasks: ['coffee', 'jsmin-sourcemap']
       sass:
-        files: ['assets/css/*.sass']
+        files: ['assets/css/**/*.sass']
         tasks: ['compass']
+      scss:
+        files: ['assets/css/**/*.scss']
+        tasks:['compass']
 
   grunt.loadNpmTasks 'grunt-contrib-coffee'
   grunt.loadNpmTasks 'grunt-contrib-compass'

@@ -11,7 +11,11 @@
     "grunt-contrib-coffee": "*",
     "grunt-contrib-compass": "*",
     "grunt-contrib-watch": "*",
+    "grunt-contrib-imagemin": "*",
+    "grunt-contrib-clean": "*",
+    "grunt-concurrent": "*",
     "grunt-jsmin-sourcemap": "*",
-    "grunt-contrib-jshint": "*"
+    "grunt-notify": "*",
+    "grunt-newer": "*"
   }
 }

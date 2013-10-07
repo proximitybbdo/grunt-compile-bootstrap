@@ -4,6 +4,20 @@ module.exports = (grunt) ->
   grunt.initConfig
     pkg: grunt.file.readJSON('package.json')
 
+    config:
+      src: 'assets/coffee'
+      dest: 'assets/js'
+
+    clean:
+      build:
+        src: ['<%= config.dest %>/*', '!<%= config.dest %>/vendor']
+
+    notify:
+      watch:
+        options:
+          title: "Watch",
+          message: "Watch compile completed"
+
     compass:
       app:
         options:
@@ -22,13 +36,9 @@ module.exports = (grunt) ->
 
     'jsmin-sourcemap':
       all:
-        # Source files to concatenate and minify (also accepts a string and minimatch items)
-        src: ['assets/js/main.js']
-        # Destination for concatenated/minified JavaScript
-        dest: 'assets/js/main.min.js'
-        # Destination for sourcemap of minified JavaScript
-        destMap: 'assets/js/main.js.map'
-        # Optional root for all relative URLs
+        src: ['<%= config.dest %>/main.js']
+        dest: '<%= config.dest %>/main.min.js'
+        destMap: '<%= config.dest %>/main.js.map'
         srcRoot: '../..'
 
     coffee:
@@ -38,30 +48,47 @@ module.exports = (grunt) ->
           bare: false
           join: true
         files:
-          'assets/js/main.js': ['assets/coffee/**/*.coffee']
+          '<%= config.dest %>/main.js': ['<%= config.src %>/**/*.coffee']
 
-    jshint:
-      app:
+    # jshint:
+    #   app:
+    #     options:
+    #       boss: true
+    #       expr: true
+    #       eqnull: true
+    #     files:
+    #       src: '<%= config.dest %>/main.js'
+
+    imagemin:
+      dist:
         options:
-          boss: true
-          expr: true
-          eqnull: true
-        files:
-          src: 'assets/js/site/base.js'
+          optimizationLevel: 3
+        files: [
+            expand: true,
+            cwd: "assets/img/",
+            src: "**/*.{png,jpg,jpeg}"
+            dest: "assets/img/"
+        ]
 
     watch:
+      options:
+        spawn: false
+        interrupt: true
+        atBegin: true
+        interval: 500
       app:
-        files: ['assets/coffee/**/*.coffee']
-        tasks: ['coffee', 'jsmin-sourcemap']
+        files: ['<%= config.src %>/**/*.coffee']
+        tasks: ['any-newer:coffee']
       sass:
         files: ['assets/css/*.sass']
         tasks: ['compass']
 
-  grunt.loadNpmTasks 'grunt-contrib-coffee'
-  grunt.loadNpmTasks 'grunt-contrib-compass'
-  grunt.loadNpmTasks 'grunt-contrib-watch'
-  grunt.loadNpmTasks 'grunt-contrib-jshint'
-  grunt.loadNpmTasks 'grunt-jsmin-sourcemap'
+    concurrent:
+      compile: ['compass', 'coffee', 'jsmin-sourcemap']
+      optimize: ['imagemin']
 
-  # Default task.
-  grunt.registerTask 'default', ['compass', 'coffee', 'jshint', 'jsmin-sourcemap']
+  require('matchdep').filterDev('grunt-*').forEach grunt.loadNpmTasks
+
+  # Tasks
+  grunt.registerTask 'default', ['concurrent:compile']
+  grunt.registerTask 'production', ['clean', 'concurrent:compile', 'concurrent:optimize']
